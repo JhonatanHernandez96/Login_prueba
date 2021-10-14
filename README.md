@@ -7,58 +7,69 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## Tecnologías
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Para la realización de esta prueba se utilizaron las siguientes tecnologías:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Backend
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 7.4
+- MYSQL 5.7
+- Laravel 8
+- Laravel Jetstream
+- Laravel-Permission | Spatie (Roles y Permisos)
 
-## Learning Laravel
+### Frontend 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Livewire (Front)
+- AlpineJS (Front)
+- Tailwild CSS (Front)
+- Bootstrap 4 (Gestión Administrativa)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Ejecución
 
-## Laravel Sponsors
+Para la ejecución del aplicativo se recomienda usar Laragon ya que este utiliza servidores personalizados el cual facilita la ejecución de los datos de prueba (es opcional) igualmente dejare las instrucciones en caso de que allá problemas. 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+* Clonar el repositorio 
 
-### Premium Partners
+	    git clone https://github.com/JhonatanHernandez96/Prueba_blog.git
+        cd Prueba_blog
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+* crean el archivo .env
 
-## Contributing
+	    cp .env.example .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+si presentan problemas lo pueden crear en el editor de codigo
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* Instalar Paquetes para Laravel: 
 
-## Security Vulnerabilities
+	    composer install
+	    npm install
+	
+* crear la bse de datos ya sea en PhpMyadmin y en el archivo .env verificar lo siguiente
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+        DB_CONNECTION=mysql
+        DB_DATABASE=prueba_blog (en caso de que su db tenga otro nombre lo debe poner)
+        FILESYSTEM_DRIVER=public (para poner almacenar las imágenes de prueba)
 
-## License
+* Ejecutan todas las migraciones(en caso de presentar problemas realizar otros pasos)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+        php artisan migrate --seed 
+
+si presentan problemas ejecutando los seeder los realiza de manera independiente en este orden:
+
+    php artisan db:seed --class=RoleSeeder
+    php artisan db:seed --class=UserSeeder
+
+tengan en cuenta que al hacerlo de esta manera el Aplicativo no tendrá posts, categorías ni tags de prueba el usuario admin deberá crearlos desde 0 (categorías,tags,posts) en ese orden.
+esto hace que se ejecuten los roles y después el usuario superAdmin
+
+* por ultimo 
+
+        npm run dev
+
+* Credenciales (tener en cuenta que el usuario admin debe dar el rol a un usuario nuevo registrado para que el pueda crear posts, también re puede crear nuevos roles si se requiere )
+
+	    email: admin@hotmail.com
+	    password: 123456
